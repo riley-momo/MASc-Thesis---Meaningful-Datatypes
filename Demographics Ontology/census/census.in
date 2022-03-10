@@ -1,0 +1,2 @@
+% Census Axiom 1: definition of census
+(all gp all t all c (census(gp, t, count(c)) <-> resides_in(c, gp, t))).

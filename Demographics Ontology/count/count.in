@@ -1,0 +1,18 @@
+% Count Axiom 1: Counts and populations are distinct.
+(all c (crowd(c) -> -(population(c)))).
+
+% Count Axiom 2: A crowd's count is uniquely a population.
+(all c (crowd(c) <-> population(count(c)))).
+
+% Count Axiom 3: Crowd counts are always positive populations.
+(all c (crowd(c) -> lesser_population(zero_population, count(c)))).
+
+% Count Axiom 4: Relationship between crowd differences and population sums.
+(all c1 all c2 all c3 (crowd_diff(c1, c2, c3) -> (count(c1) = add_population(count(c2), count(c3))))).
+
+% Count Axiom 5: A crowd with a population greather than that of another crowd has a subcrowd with an equal population.
+(all c1 all c2 (lesser_population(count(c1), count(c2)) -> 
+	(exists c3 (subcrowd(c3, c2) & (count(c3)=count(c1)))))).
+	
+% Count Axiom 6: Crowd difference is unordered.
+(all c1 all c2 all c3 (crowd_diff(c1, c2, c3) -> crowd_diff(c2, c1, c3))).

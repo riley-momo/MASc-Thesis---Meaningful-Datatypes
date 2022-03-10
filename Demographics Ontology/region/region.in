@@ -1,0 +1,32 @@
+% Region Axiom 1: subregion is reflexive.
+(all gs (geospatial_region(gs) -> subregion(gs, gs))).
+
+% Region Axiom 2: subregion is antisymmetric.
+(all gs1 all gs2 ((subregion(gs1, gs2) & subregion(gs2, gs1)) -> (gs1=gs2))).
+
+% Region Axiom 3: subregion is transitive.
+(all gs1 all gs2 all gs3 ((subregion(gs1, gs2) & subregion(gs2, gs3)) -> subregion(gs1, gs3))).
+
+% Region Axiom 4: disjoint region definition
+(all gs1 all gs2 (disjoint_region(gs1, gs2) <->
+	(geospatial_region(gs1) & 
+	geospatial_region(gs2) & 
+	-(exists gs3 (subregion(gs3, gs1) &
+					(subregion(gs3, gs2))))))).
+					
+% Region Axiom 5: geospatial mereology is total.
+(all gs (geospatial_region(gs) ->
+	(exists gs1 (disjoint_region(gs, gs1) & 
+					(all gs2 (disjoint_region(gs, gs2) -> subregion(gs2, gs1))) &
+					(all gs3 (disjoint_region(gs3, gs1) -> subregion(gs3, gs))))))).
+					
+% Region Axiom 6: geospatial atom definition
+(all gs (geospatial_atom(c) <->
+	(geospatial_region(c) & 
+	-(exists gs1 (subregion(gs1, gs) &
+					-(gs1=gs)))))).
+
+% Region Axiom 7: regions are divisible by geospatial atoms
+(all gs (geospatial_region(gs) -> 
+	(exists gs1 (geospatial_atom(gs1) & subregion(gs1, g))))).
+
