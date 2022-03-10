@@ -1,0 +1,41 @@
+% Region Axiom 1: subregion is reflexive.
+(all gs (geospatial_region(gs) -> subregion(gs, gs))).
+
+% Region Axiom 2: subregion is antisymmetric.
+(all gs1 all gs2 ((subregion(gs1, gs2) & subregion(gs2, gs1)) -> (gs1=gs2))).
+
+% Region Axiom 3: subregion is transitive.
+(all gs1 all gs2 all gs3 ((subregion(gs1, gs2) & subregion(gs2, gs3)) -> subregion(gs1, gs3))).
+
+% Region Axiom 4: overlaps definition
+(all gs1 all gs2 (overlaps(gs1, gs2) <->
+	(exists gs3 (subregion(gs3, gs1) &
+					(subregion(gs3, gs2))))))).
+					
+% Region Axiom 5: Disjoint definition
+(all gs1 all gs2 (disjoint_regions(gs1, gs2) <-> -(overlaps(gs1,gs2)))).
+
+% Region Axiom 6 : a,b,c are the only atoms.
+(all gs (geospatial_atom(gs) <-> ((gs=a) | (gs=b) | (gs=c)))).
+					
+% Region Axiom 7: a,b,c are distinct.
+((-(a=b)) & (-(b=c)) & (-(c=a))).
+
+% Region Axiom 8: geospatial atom definition
+(all gs (geospatial_atom(c) <->
+	(geospatial_region(c) & 
+	-(exists gs1 (subregion(gs1, gs) &
+					-(gs1=gs)))))).
+
+% Region Axiom 9: regions are divisible by geospatial atoms
+(all gs (geospatial_region(gs) -> 
+	(exists gs1 (geospatial_atom(gs1) & subregion(gs1, g))))).
+
+% Region Axiom 10: geospatial sum precondition
+(all gs1 all gs2 all gs (geospatial_sum(gs1, gs2, gs) -> disjoint_regions(gs1,gs2))).
+
+% Region Axiom 11: geospatial sum postcondition
+(all gs1 all gs2 all gs (geospatial_sum(gs1, gs2, gs) -> 
+	(geospatial_region(gs) &
+	subregion(gs1, gs) &
+	subregion(gs2, gs)))).

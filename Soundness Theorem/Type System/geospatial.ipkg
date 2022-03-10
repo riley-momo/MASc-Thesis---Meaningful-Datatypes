@@ -1,0 +1,5 @@
+package geospatial
+
+sourcedir = src
+
+modules = Geospatial_TBox, Geospatial_ABox

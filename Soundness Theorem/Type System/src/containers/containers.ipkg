@@ -1,0 +1,65 @@
+package containers
+
+author     = Jan de Muijnck-Hughes
+maintainer = Jan de Muijnck-Hughes
+license    = BSD3 but see LICENSE for more information
+brief      = "Containers."
+readme     = README.md
+
+sourceloc  = git://git@github.com:jfdm/idris-containers.git
+bugtracker = http://www.github.com/jfdm/idris-containers/issues
+
+pkgs = contrib
+
+opts = "--warnreach"
+
+modules = Data.Tree
+
+        , Data.AVL.Core
+        , Data.AVL.Core.API
+        , Data.AVL.Core.Quantifiers
+
+        , Data.AVL.BTree
+        , Data.AVL.Dict
+        , Data.AVL.Set
+        , Data.AVL.Graph
+
+        , Data.RedBlack.Tree
+
+        , Data.RoseTree
+
+        , Data.Stack
+        , Data.Queue
+
+        , Data.DList
+        , Data.PList
+
+        , Data.DVect
+        , Data.BVect
+        , Data.PVect
+
+        , Data.DeBruijn
+
+        , Data.Pair.Predicates
+
+        , Data.Vect.Extra
+
+        , Data.List.NotElem
+
+        , Data.List.Predicates.Interleaving
+        , Data.List.Predicates.Unique
+        , Data.List.Predicates.Unique.Old
+        , Data.List.Predicates.Pairs
+        , Data.List.Predicates.Pairs.Old
+        , Data.List.Predicates.Thinning
+
+        , Data.List.Predicates
+
+        , Data.List.Filter
+        , Data.List.LeftPad
+        , Data.List.Fixes
+
+        , Decidable.Error
+        , Decidable.Equality.Indexed
+
+        , Data.Algebraic.Graph
