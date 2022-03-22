@@ -1,0 +1,9 @@
+ % Population Average Axiom 1: Existence of zero population average.
+population(zero_population).
+
+% Population Average Axiom 2: Population Average ordering transitivty.
+(all p1 all p2 all p3 (population_average(p1) & population_average(p2) & population_average(p3) ->
+(lesser(p1, p2) & lesser(p2, p3)) -> lesser(p1, p3))).
+
+% Population Average Axiom 3: Population average quantities are derived from population quantities
+(all ap (average_population(ap) -> (exists p exists n apc(p,n,ap)))).

@@ -1,0 +1,23 @@
+% Population Difference Axiom 1: Existence of zero populatiop_dif.
+populatiop_dif(zero_populatiop_dif).
+
+% Population Difference Axiom 2: Population Difference ordering transitivty.
+(all p1 all p2 all p3 ((lesser(p1, p2) & lesser(p2, p3)) ->
+	lesser(p1, p3))).
+
+% Population Difference Axiom 3: Population Difference ordering discreteness.
+(all p1 (populatiop_dif(p1) ->
+	(exists p2 (populatiop_dif(p2) & lesser(p1, p2) &
+		-(exists p3 (populatiop_dif(p3) & lesser(p1, p3) & lesser(p3, p2))))))).
+
+% Population Difference Axiom 4: Positive Difference Definition
+(all p ((population_dif(p) & lesser(zero_populatiop_dif, p)) ->
+    (exists p1 exists p2 (population(p1) & population(p2) & difference(p1, p2, p) & lesser(p2, p1))))).
+
+% Population Difference Axiom 5: Negative Difference Definition
+(all p ((population_dif(p) & lesser(p, zero_populatiop_dif)) ->
+    (exists p1 exists p2 (population(p1) & population(p2) & difference(p1, p2, p) & lesser(p1, p2))))).
+
+% Population Difference Axiom 6: Zero Difference Definition
+(all p ((population_dif(p) & (p = zero_populatiop_dif)) ->
+    (exists p1 exists p2 (population(p1) & population(p2) & difference(p1, p2, p) & (p1 = p2))))).

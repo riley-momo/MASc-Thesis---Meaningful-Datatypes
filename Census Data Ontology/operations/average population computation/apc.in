@@ -1,0 +1,20 @@
+% Average Population Computation Axiom 1: Sort constraints for apc
+(all p all n all ap (apc(p, n, ap) -> (population(p) & nat(n) & averagepopulation(ap) & lesser(zero_nat, n)))).
+
+% Average Population Computation Axiom 2: Average populations are equal to the population of a geopolitical region divided by its cardinality at a timepoint
+(all p all n all ap (apc(p, n, ap) ->
+    (exists gp exists t (census(gp, t, p) & (n = cardinality(gp,t)))))).
+
+% Average Population Computation Axiom 3: Population numerator and result equality
+(all p1 all p2 all n all ap ((apc(p1, n, ap) & apc(p2, n, ap)) -> (p1 = p2))).
+
+% Average Population Computation Axiom 4: Population demoninator and result equality
+(all p all n1 all n2 all ap ((apc(p, n1, ap) & apc(p, n2, ap)) -> (n1 = n2))).
+
+% Average Population Computation Axiom 5: Population numerator and result ordering
+(all p1 all p2 all n all ap1 all ap2 ((apc(p1, n, ap1) & apc(p2, n, ap1) & lesser(p1, p2)) ->
+    lesser(ap1, ap2))).
+
+% Average Population Computation Axiom 6: Population denominator and result ordering
+(all p all n1 all n2 all ap1 all ap2 ((apc(p, n1, ap1) & apc(p, n2, ap1) & lesser(n1, n2)) ->
+    lesser(ap2, ap1))).

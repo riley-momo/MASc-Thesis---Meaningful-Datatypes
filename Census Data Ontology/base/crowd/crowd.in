@@ -1,0 +1,25 @@
+% Crowd Axiom 1: subcrowd is reflexive
+(all c (crowd(c) -> subcrowd(c,c))).
+
+% Crowd Axiom 2: subcrowd is antisymmetric
+(all c1 all c2 ( (subcrowd(c1, c2) & subcrowd(c2, c1)) -> (c1=c2))).
+
+% Crowd Axiom 3: subcrowd is transitive
+(all c1 all c2 all c3 ((subcrowd(c1, c2) & subcrowd(c2, c3)) -> subcrowd(c1, c3))).
+
+% Crowd Axiom 4: disjoint crowd definition
+(all c1 all c2 (disjoint_crowd(c1, c2) <->
+	(crowd(c1) & 
+	crowd(c2) & 
+	-(exists c3 (subcrowd(c3, c1) &
+					(subcrowd(c3, c2))))))).
+					
+% Crowd Axiom 5: individual definition
+(all c (individual(c) <->
+	(crowd(c) & 
+	-(exists c1 (subcrowd(c1, c) &
+					-(c1=c)))))).
+
+% Crowd Axiom 6: crowds are divisible by individuals
+(all c (crowd(c) -> 
+	(exists c1 (individual(c1) & subcrowd(c1, c))))).

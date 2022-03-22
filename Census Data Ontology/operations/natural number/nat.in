@@ -1,0 +1,30 @@
+% Natural Number Axiom 1: Existence of zero nat.
+nat(zero_nat).
+
+% Natural Number Axiom 2: Natural Number sums are nats.
+(all n1 all n2 ((nat(n1) & nat(n2)) -> nat(add(n1, n2)))).
+
+% Natural Number Axiom 3: Additive definition of zero nat.
+(all n (nat(n) -> (add(n, zero_nat) = n))).
+
+% Natural Number Axiom 4: Natural Number addition commutativity.
+(all n1 all n2 ((nat(n1) & nat(n2)) ->
+	(add(n1, n2) = add(n2, n1)))).
+
+% Natural Number Axiom 5: Natural Number addition ordering.
+(all n1 all n2 all n3 ((nat(n1) & nat(n2) & nat(n3) & lesser(n1, n2)) ->
+	lesser(add(n1, n3), add(n2, n3)))).
+
+% Natural Number Axiom 6: Natural Number addition equivalency.
+(all n1 all n2 all n3 ((nat(n1) & nat(n2) & nat(n3) & (n1=n2)) ->
+	(add(n1, n3) = add(n2, n3)))).
+
+% Natural Number Axiom 7: Natural Number ordering transitivty.
+(all n1 all n2 all n3 ((lesser(n1, n2) & lesser(n2, n3)) ->
+	lesser(n1, n3))).
+
+% Natural Number Axiom 8: Natural Number ordering discreteness.
+(all n1 (nat(n1) ->
+	(exists n2 (nat(n2) & lesser(n1, n2) &
+		-(exists n3 (nat(n3) & lesser(n1, n3) & lesser(n3, n2))))))).
+

@@ -1,0 +1,39 @@
+% Time Axiom 1: Existence of zero timeduration.
+timetimeduration(zero_timeduration).
+
+% Time Axiom 2: Time sums are timedurations.
+(all d1 all d2 ((timeduration(d1) & timeduration(d2)) -> timeduration(add(d1, d2)))).
+
+% Time Axiom 4: duration addition commutativity.
+(all d1 all d2 ((timeduration(d1) & timeduration(d2)) ->
+	(add(d1, d2) = add(d2, d1)))).
+
+% Time Axiom 3: Additive definition of zero timeduration.
+(all d (timeduration(d) -> (add(d, zero_timeduration) = d))).
+
+% Time Axiom 4: Existence of duration inverse
+(all d1 (timeduration(d1) -> (exists d2 (add(d1,d2) = zero_duration)))).
+
+% Time Axiom 5: Duration addition symmetry
+(all d1 all d2 ((timeduration(d1) & timeduration(d2)) -> (add(d1,d2) = add(d2,d1)))).
+
+% Time Axiom 6: Timepoints and timedurations are disjoint classes
+(all x (timepoint(x) -> -timeduration(x))).
+
+% Time Axiom 7: Point duration definition
+(all t1 all t2 ((timepoint(t1) & timepoint(t2)) -> timeduration(duration(t1,t2)))).
+
+% Time Axiom 8: Point ordering definition
+(all t1 all t2 ((timeduration(t1) & timeduration(t2)) -> (lesser(zero_duration, duration(t1,t2)) <-> before(t1,t2)))).
+
+% Time Axiom 9: Touching duration combination
+(all t1 all t2 all t3 ((timepoint(t1) & timepoint(t2) & timepoint(t3)) ->
+    (add(duration(t1,t2, duration(t2,t3))) = duration(t1,t3)))).
+
+% Time Axiom 10: Construction of equal durations from arbitrary timepoints
+(all t1 all t2 all t3 ((timepoint(t1) & timepoint(t2) & timepoint(t3)) ->
+    (exists t4 (timepoint(t4) & (duration(t1,t2) = duration(t3,t4)))))).
+
+% Time Axiom 11: Definition of timepoint betweenness
+(all t1 all t2 all t3 ((timepoint(t1) & timepoint(t2) & timepoint(t2)) ->
+    ((before(t1,t2) & before(t2,t3)) <-> between(t1,t2,t3)))).

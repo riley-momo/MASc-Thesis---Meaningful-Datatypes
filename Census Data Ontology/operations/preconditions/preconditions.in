@@ -1,0 +1,30 @@
+% Census Operation Preconditions Axiom 1: population sums must have disjoint regions and identical timepoints
+(all p1 all p2 all p ((sum(p1, p2, p) & population(p)) ->
+	(exists c1 exists c2 exists gp1 exists gp2 exists t (
+		census(gp1, t, count(c1)) &
+		(p1 = count(c1)) &
+		census(gp2, t, count(c2)) &
+		(p2 = count(c2)) &
+		geopol_disjoint(gp1, gp2, t))))).
+
+% Census Operation Preconditions Axiom 2: population sum census is the census of the operands total super geopolitical entity
+(all p1 all p2 all p ((sum(p1, p2, p) & population(p)) ->
+	(all c1 all c2 all gp1 all gp2 all t ((
+		census(gp1, t, count(c1)) &
+		(p1 = count(c1)) &
+		census(gp2, t, count(c2)) &
+		(p2 = count(c2))) ->
+			(exists gp exists c (
+					subgeopol(gp1, gp, t) &
+					subgeopol(gp2, gp, t) &
+					(count(c) = p) &
+					census(gp, t, count(c)))))))).
+
+% Census Operation Preconditions 3: population differences must have either disjoint regions or differing timepoints
+(all p1 all p2 all p ((sum(p1, p2, p) & population(p)) ->
+	(exists c1 exists c2 exists gp1 exists gp2 exists t (
+		census(gp1, t, count(c1)) &
+		(p1 = count(c1)) &
+		census(gp2, t, count(c2)) &
+		(p2 = count(c2)) &
+		((geopol_disjoint(gp1, gp2, t) & (t1=t2)) | ((gp1=gp2) & after(t1,t2))))))).

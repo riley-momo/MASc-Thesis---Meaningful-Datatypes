@@ -1,0 +1,11 @@
+% Cardinality Axiom 1: The cardinality of a geopolitical at a timepoint is unqiuely a natural number
+(all gp all t (geopolitical_entity(gp) & timepoint(t) <-> nat(cardinality(gp,t)))).
+
+% Cardinality Axiom 2: Cardinality of a geopolitical entity is at least one for timepoints inside an occupation
+(all gp all t (geopolitical_entity(gp) & timepoint(t) ->
+    (lesser(zero_cardinality, cardinality(gp,t)) <->
+        (exists o exists gs (occupation_of(o, gs, gp) & between(start_of(o), t, end_of(o))))))).
+
+% Cardinality Axiom 3: Cardinality ordering definition in terms of geopolitical mereology
+(all gp1 all gp2 all t (lesser(cardinality(gp1,t), cardinality(gp2,t)) ->
+    (exists gp3 (subgeopol(gp3,gp2,t) & (cardinality(gp3,t) = cardinality(gp1,t)))))).
