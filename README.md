@@ -8,7 +8,7 @@ Repository to accompany my MASc Thesis, Meaningful Datatypes: Ontologically-Soun
 4. Presentations
 
 ### Census Data Ontology
-This folder contains the modules of the census data ontology, written in Prover9 syntax. The modules of the ontology are organized into the base modules, which describe the fundamental concepts underlying census data, and the operatiosn modules, which model the ways which census data can be combined and manipulated. 
+This folder contains the modules of the census data ontology, written in Prover9 syntax. The modules of the ontology are organized into the base modules, which describe the fundamental concepts underlying census data, and the operation modules, which model the ways which census data can be combined and manipulated. 
 
 ### MeTS Implementation
 This folder contains the idris source code for the proof of concept implementation of MeTS, based on StatCAN census data. It is organized in a modular structure inlcuding modules for Mereology, Provenance, PopulationTypes, PopulationProvenance, Census, & Main idris source files.
